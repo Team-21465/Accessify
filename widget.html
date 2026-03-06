@@ -1,0 +1,212 @@
+<!-- Accessibility Widget Template - Matches popup.html structure -->
+<div id="acc-widget-button" role="button" aria-label="Accessibility Menu" tabindex="0">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+    <circle cx="12" cy="7.5" r="1.5"></circle>
+    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+    <path d="M16.5 10.5 16 9l-3 1h-2L8 9l-.5 1.5 3 1V13L9 17.25l1.5.75 1.25-3.5h.5L13.5 18l1.5-.75L13.5 13v-1.5l3-1z"></path>
+  </svg>
+</div>
+
+<div id="acc-widget-panel" role="dialog" aria-label="Accessibility Options">
+  <div class="acc-panel-header">
+    <div>
+      <h2>Accessibility Suite</h2>
+      <p>Personalize your web experience</p>
+    </div>
+    <button id="acc-close-btn" aria-label="Close">×</button>
+  </div>
+  
+  <div class="acc-panel-content">
+    <!-- Vision Section -->
+    <div class="acc-category">
+      <h3>Vision</h3>
+      
+      <div class="acc-control">
+        <label>Text Size <span id="acc-text-size-val">100%</span></label>
+        <div class="size-btn-group" id="acc-text-size-buttons" role="group" aria-label="Text Size Presets">
+          <button type="button" class="size-btn" data-size="1.0">None</button>
+          <button type="button" class="size-btn" data-size="1.1">110%</button>
+          <button type="button" class="size-btn" data-size="1.15">115%</button>
+          <button type="button" class="size-btn" data-size="1.2">120%</button>
+        </div>
+        <div class="segmented-line" data-for="acc-text-size-buttons">
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+        </div>
+      </div>
+      
+      <div class="acc-control">
+        <label>Contrast Mode</label>
+        <select id="acc-contrast">
+          <option value="off">Original</option>
+          <option value="invert">Invert Colors</option>
+          <option value="dark">Dark Mode</option>
+          <option value="high">High Contrast</option>
+          <option value="monochrome">Monochrome</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+
+      <div id="acc-custom-contrast-section" class="acc-control" style="display: none; padding: 10px; background: #fff; border: 1px solid #ddd; border-radius: 8px;">
+        <div style="display: flex; gap: 10px;">
+          <div style="flex: 1;">
+            <label style="font-size: 11px;">Text Color</label>
+            <input type="color" id="acc-text-color" value="#000000" style="width: 100%; height: 25px; border: none; padding: 0;">
+          </div>
+          <div style="flex: 1;">
+            <label style="font-size: 11px;">Background</label>
+            <input type="color" id="acc-bg-color" value="#ffffff" style="width: 100%; height: 25px; border: none; padding: 0;">
+          </div>
+        </div>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Dyslexia Font</span>
+          <input type="checkbox" id="acc-dyslexia">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Highlight Links</span>
+          <input type="checkbox" id="acc-highlight-links">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Highlight Headers</span>
+          <input type="checkbox" id="acc-highlight-headers">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Big Cursor</span>
+          <input type="checkbox" id="acc-big-cursor">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+    </div>
+    
+    <!-- ADHD & Cognitive Section -->
+    <div class="acc-category">
+      <h3>ADHD & Cognitive</h3>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Screen Reader</span>
+          <input type="checkbox" id="acc-screen-reader">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Reading Guide</span>
+          <input type="checkbox" id="acc-reading-guide-toggle">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Reading Mask</span>
+          <input type="checkbox" id="acc-reading-mask-toggle">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Stop Animations</span>
+          <input type="checkbox" id="acc-stop-animations">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+    </div>
+    
+    <!-- Text Styling Section -->
+    <div class="acc-category">
+      <h3>Text Styling</h3>
+      
+      <div class="acc-control">
+        <label>Line Height <span id="acc-line-height-val">1.5x</span></label>
+        <div class="size-btn-group option-btn-group" id="acc-line-height-buttons" role="group" aria-label="Line Height Presets">
+          <button type="button" class="size-btn option-btn" data-value="">None</button>
+          <button type="button" class="size-btn option-btn" data-value="1">1</button>
+          <button type="button" class="size-btn option-btn" data-value="1.5">1.5</button>
+          <button type="button" class="size-btn option-btn" data-value="1.75">1.75</button>
+          <button type="button" class="size-btn option-btn" data-value="2">2</button>
+        </div>
+        <div class="segmented-line" data-for="acc-line-height-buttons">
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+        </div>
+      </div>
+      
+      <div class="acc-control">
+        <label>Letter Spacing <span id="acc-letter-spacing-val">0px</span></label>
+        <div class="size-btn-group option-btn-group" id="acc-letter-spacing-buttons" role="group" aria-label="Letter Spacing Presets">
+          <button type="button" class="size-btn option-btn" data-value="0">None</button>
+          <button type="button" class="size-btn option-btn" data-value="1">1</button>
+          <button type="button" class="size-btn option-btn" data-value="2">2</button>
+          <button type="button" class="size-btn option-btn" data-value="3">3</button>
+        </div>
+        <div class="segmented-line" data-for="acc-letter-spacing-buttons">
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+        </div>
+      </div>
+      
+      <div class="acc-control">
+        <label>Alignment <span id="acc-text-align-val">Left</span></label>
+        <div class="size-btn-group option-btn-group" id="acc-text-align-buttons" role="group" aria-label="Text Alignment Options">
+          <button type="button" class="size-btn option-btn" data-value="">None</button>
+          <button type="button" class="size-btn option-btn" data-value="left">Left</button>
+          <button type="button" class="size-btn option-btn" data-value="right">Right</button>
+          <button type="button" class="size-btn option-btn" data-value="center">Center</button>
+          <button type="button" class="size-btn option-btn" data-value="justify">Justify</button>
+        </div>
+        <div class="segmented-line" data-for="acc-text-align-buttons">
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+          <span class="segment"></span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Color Blindness Section -->
+    <div class="acc-category">
+      <h3>Color Blindness</h3>
+      
+      <div class="acc-control">
+        <label>Filter</label>
+        <select id="acc-colorblind">
+          <option value="off">Off</option>
+          <option value="protanopia">Protanopia (Red-blind)</option>
+          <option value="deuteranopia">Deuteranopia (Green-blind)</option>
+          <option value="tritanopia">Tritanopia (Blue-blind)</option>
+          <option value="achromatopsia">Achromatopsia</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="acc-footer">
+      <button id="acc-reset-btn" class="acc-btn-reset">Reset All</button>
+    </div>
+  </div>
+</div>

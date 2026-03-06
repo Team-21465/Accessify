@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Enhancer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Accessibility Suite</h1>
+      <p class="subtitle">Personalize your web experience</p>
+    </header>
+
+    <div class="main-controls">
+      <button id="resetBtn" class="btn-text">Reset All</button>
+    </div>
+
+    <!-- Vision Section -->
+    <div class="category">
+      <h2>Vision</h2>
+      <div class="grid">
+        <div class="control-item">
+          <label class="label-row">Text Size <span id="textSizeValue">100%</span></label>
+          <div class="size-btn-group" id="textSizeButtons" role="group" aria-label="Text Size Presets">
+            <button type="button" class="size-btn" data-size="1.0">None</button>
+            <button type="button" class="size-btn" data-size="1.1">110%</button>
+            <button type="button" class="size-btn" data-size="1.15">115%</button>
+            <button type="button" class="size-btn" data-size="1.2">120%</button>
+          </div>
+          <div class="segmented-line" data-for="textSizeButtons">
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+          </div>
+        </div>
+
+        <div class="control-item">
+          <label for="contrastMode">Contrast Mode</label>
+          <select id="contrastMode">
+            <option value="off">Original</option>
+            <option value="invert">Invert Colors</option>
+            <option value="dark">Dark Mode</option>
+            <option value="high">High Contrast (AAA)</option>
+            <option value="monochrome">Monochrome</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+
+        <div id="customContrastSection" class="control-item custom-panel" style="display: none;">
+          <div class="color-pickers">
+            <div>
+              <label for="textColor">Text</label>
+              <input type="color" id="textColor" value="#000000">
+            </div>
+            <div>
+              <label for="backgroundColor">BG</label>
+              <input type="color" id="backgroundColor" value="#ffffff">
+            </div>
+          </div>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Dyslexia Font</span>
+            <input type="checkbox" id="dyslexiaFont">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Highlight Links</span>
+            <input type="checkbox" id="highlightLinks">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Highlight Headers</span>
+            <input type="checkbox" id="highlightHeaders">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Big Cursor</span>
+            <input type="checkbox" id="bigCursor">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADHD & Cognitive Section -->
+    <div class="category">
+      <h2>ADHD & Cognitive</h2>
+      <div class="grid">
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Screen Reader</span>
+            <input type="checkbox" id="screenReader">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Reading Guide</span>
+            <input type="checkbox" id="readingGuide">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Reading Mask</span>
+            <input type="checkbox" id="readingMask">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Stop Animations</span>
+            <input type="checkbox" id="stopAnimations">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Adjustments -->
+    <div class="category">
+      <h2>Text Styling</h2>
+      <div class="grid">
+        <div class="control-item">
+          <label class="label-row">Line Height <span id="lineHeightValue">1.5x</span></label>
+          <div class="option-btn-group" id="lineHeightButtons" role="group" aria-label="Line Height Presets">
+            <button type="button" class="option-btn" data-value="">None</button>
+            <button type="button" class="option-btn" data-value="1">1</button>
+            <button type="button" class="option-btn" data-value="1.5">1.5</button>
+            <button type="button" class="option-btn" data-value="1.75">1.75</button>
+            <button type="button" class="option-btn" data-value="2">2</button>
+          </div>
+          <div class="segmented-line" data-for="lineHeightButtons">
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+          </div>
+        </div>
+
+        <div class="control-item">
+          <label class="label-row">Letter Spacing <span id="letterSpacingValue">0px</span></label>
+          <div class="option-btn-group" id="letterSpacingButtons" role="group" aria-label="Letter Spacing Presets">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">1</button>
+            <button type="button" class="option-btn" data-value="2">2</button>
+            <button type="button" class="option-btn" data-value="3">3</button>
+          </div>
+          <div class="segmented-line" data-for="letterSpacingButtons">
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+          </div>
+        </div>
+
+        <div class="control-item">
+          <label class="label-row">Alignment <span id="textAlignValue">Left</span></label>
+          <div class="option-btn-group" id="textAlignButtons" role="group" aria-label="Text Alignment Options">
+            <button type="button" class="option-btn" data-value="">None</button>
+            <button type="button" class="option-btn" data-value="left">Left</button>
+            <button type="button" class="option-btn" data-value="right">Right</button>
+            <button type="button" class="option-btn" data-value="center">Center</button>
+            <button type="button" class="option-btn" data-value="justify">Justify</button>
+          </div>
+          <div class="segmented-line" data-for="textAlignButtons">
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+            <span class="segment"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <label for="colorBlindFilter">Color Blindness Filter</label>
+      <select id="colorBlindFilter">
+        <option value="off">Off</option>
+        <option value="protanopia">Protanopia (Red-blind)</option>
+        <option value="deuteranopia">Deuteranopia (Green-blind)</option>
+        <option value="tritanopia">Tritanopia (Blue-blind)</option>
+        <option value="achromatopsia">Achromatopsia (Complete)</option>
+      </select>
+    </div>
+
+    <div class="footer">
+      <p>Changes are applied instantly to the active tab.</p>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

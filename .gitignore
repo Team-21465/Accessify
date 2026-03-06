@@ -1,0 +1,30 @@
+# Ignore node_modules folder
+/node_modules
+
+# Ignore .DS_Store file
+.DS_Store
+
+# Ignore .idea folder
+/.idea
+
+# Ignore build and dist folders
+/build
+/dist
+
+# Ignore npm-debug.log file
+npm-debug.log
+
+# Ignore .vs folder
+/.vs
+
+# Ignore .obj folder
+/obj
+
+# Ignore .suo folder
+/.suo
+
+# Ignore user specific VSCode settings
+.vscode/settings.json
+
+# Ignore Thumbs.db file
+Thumbs.db
