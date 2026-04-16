@@ -601,7 +601,7 @@
       css += `
         @font-face {
           font-family: 'OpenDyslexic';
-          src: url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.otf');
+          src: url('https://fonts.cdnfonts.com/s/29616/open-dyslexic.woff');
         }
         *:not(#acc-widget-panel):not(#acc-widget-panel *):not(#acc-widget-button):not(#acc-widget-button *) { 
           font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important; 

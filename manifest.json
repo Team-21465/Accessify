@@ -1,12 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Accessibility Enhancer",
-  "version": "1.0.0",
+  "name": "Accessify",
+  "version": "1.0.1",
   "description": "Improves website accessibility by adjusting text contrast and size",
   "permissions": [
     "activeTab",
-    "storage",
-    "tts"
+    "storage"
   ],
   "action": {
     "default_popup": "popup.html",
