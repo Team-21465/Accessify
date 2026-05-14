@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Accessify",
   "version": "1.2.0",
-  "description": "A comprehensive browser extension that removes barriers and increases accessibility for people with vision, hearing, and cognitive disabilities.",
+  "description": "A browser extension that removes barriers and increases accessibility for people with vision, hearing, and cognitive disabilities.",
   "permissions": ["activeTab", "storage"],
   "commands": {
     "toggle-widget-visibility": {
