@@ -1,3 +1,4 @@
+/** Toolbar popup: sync defaults + message active tab to re-merge settings. */
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('[Accessibility Suite] Popup loaded');
   
@@ -22,7 +23,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     screenReader: document.getElementById('screenReader'),
     readingGuide: document.getElementById('readingGuide'),
     readingMask: document.getElementById('readingMask'),
-    stopAnimations: document.getElementById('stopAnimations')
+    stopAnimations: document.getElementById('stopAnimations'),
+    widgetCorner: document.getElementById('popupWidgetCorner'),
+    widgetHidden: document.getElementById('popupWidgetHidden'),
+    cursorSize: document.getElementById('popupCursorSize'),
+    readingMaskBand: document.getElementById('popupMaskBand'),
+    prominentFocus: document.getElementById('popupProminentFocus')
   };
 
   const missingControls = Object.keys(controls).filter(key => !controls[key]);
@@ -40,99 +46,56 @@ document.addEventListener('DOMContentLoaded', async () => {
   const resetBtn = document.getElementById('resetBtn');
 
   const settings = await chrome.storage.sync.get(null);
-
-  const TEXT_SIZES = [1.0, 1.1, 1.15, 1.2];
-  const LINE_HEIGHTS = ["", 1, 1.5, 1.75, 2];
-  const LETTER_SPACINGS = [0, 1, 2, 3];
-  const TEXT_ALIGNMENTS = ["", 'left', 'right', 'center', 'justify'];
-  function pickNearestTextSize(val) {
-    const n = Number(val);
-    if (!Number.isFinite(n)) return 1.0;
-    return TEXT_SIZES.reduce((best, cur) => (Math.abs(cur - n) < Math.abs(best - n) ? cur : best), 1.0);
-  }
-
-  function pickNearestLineHeight(val) {
-    if (val === "" || val === undefined || val === null) return "";
-    const n = Number(val);
-    if (!Number.isFinite(n)) return "";
-    const numericOptions = LINE_HEIGHTS.filter(h => h !== "");
-    return numericOptions.reduce((best, cur) => (Math.abs(cur - n) < Math.abs(best - n) ? cur : best), "");
-  }
-
-  function pickNearestLetterSpacing(val) {
-    const n = Number(val);
-    if (!Number.isFinite(n)) return 0;
-    return LETTER_SPACINGS.reduce((best, cur) => (Math.abs(cur - n) < Math.abs(best - n) ? cur : best), 0);
-  }
-
-  function pickValidAlignment(val) {
-    if (val === "" || val === undefined || val === null) return "";
-    return TEXT_ALIGNMENTS.includes(val) ? val : "";
-  }
+  const P = globalThis.AccessifyPresets;
 
   function setActiveTextSizeButton(size) {
-    const s = pickNearestTextSize(size);
+    const s = P.pickNearestTextSize(size);
     textSizeButtons.forEach((btn) => {
       btn.classList.toggle('active', Number(btn.dataset.size) === s);
     });
     if (textSizeValueEl) {
       textSizeValueEl.textContent = s === 1.0 ? "Default" : Math.round(s * 100) + '%';
     }
-    updateSegments('textSizeButtons', s);
+    P.updateSegments('textSizeButtons', s);
     return s;
   }
 
   function setActiveLineHeightButton(value) {
-    const v = pickNearestLineHeight(value);
+    const v = P.pickNearestLineHeight(value);
     lineHeightButtons.forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.value === String(v));
     });
     if (lineHeightValueEl) {
       lineHeightValueEl.textContent = v === "" ? "Original" : `${v}x`;
     }
-    updateSegments('lineHeightButtons', v);
+    P.updateSegments('lineHeightButtons', v);
     return v;
   }
 
   function setActiveLetterSpacingButton(value) {
-    const v = pickNearestLetterSpacing(value);
+    const v = P.pickNearestLetterSpacing(value);
     letterSpacingButtons.forEach((btn) => {
       btn.classList.toggle('active', Number(btn.dataset.value) === v);
     });
     if (letterSpacingValueEl) {
       letterSpacingValueEl.textContent = v === 0 ? "None" : `${v}px`;
     }
-    updateSegments('letterSpacingButtons', v);
+    P.updateSegments('letterSpacingButtons', v);
     return v;
   }
 
   function setActiveTextAlignButton(value) {
-    const v = pickValidAlignment(value);
+    const v = P.pickValidAlignment(value);
     textAlignButtons.forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.value === String(v));
     });
     if (textAlignValueEl) {
       textAlignValueEl.textContent = v === "" ? "Original" : v.charAt(0).toUpperCase() + v.slice(1);
     }
-    updateSegments('textAlignButtons', v);
+    P.updateSegments('textAlignButtons', v);
     return v;
   }
 
-  function updateSegments(groupId, value) {
-    const group = document.getElementById(groupId);
-    if (!group) return;
-    const segments = group.nextElementSibling?.classList.contains('segmented-line')
-      ? group.nextElementSibling.querySelectorAll('.segment')
-      : [];
-    if (!segments.length) return;
-    const buttons = Array.from(group.querySelectorAll('button'));
-    const index = buttons.findIndex((btn) => {
-      const btnVal = btn.dataset.value ?? btn.dataset.size;
-      return btnVal === String(value) || (value !== "" && Number(btnVal) === Number(value));
-    });
-    segments.forEach((seg, i) => seg.classList.toggle('active', i === index));
-  }
-  
   function initUI() {
     Object.keys(controls).forEach(key => {
       if (!controls[key]) return;
@@ -321,7 +284,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       stopAnimations: false,
       lineHeight: "",
       letterSpacing: 0,
-      textAlignment: ""
+      textAlignment: "",
+      widgetCorner: 'bl',
+      widgetHidden: false,
+      cursorSize: 'md',
+      readingMaskBand: 'md',
+      prominentFocus: false
     };
 
     await chrome.storage.sync.clear();

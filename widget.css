@@ -22,6 +22,70 @@
   pointer-events: none !important;
 }
 
+/* Placement: driven by documentElement data-acc-corner */
+:root[data-acc-corner="bl"] #acc-widget-button {
+  bottom: 20px !important;
+  left: 20px !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+:root[data-acc-corner="br"] #acc-widget-button {
+  bottom: 20px !important;
+  right: 20px !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+:root[data-acc-corner="tl"] #acc-widget-button {
+  top: 20px !important;
+  left: 20px !important;
+  bottom: auto !important;
+  right: auto !important;
+}
+
+:root[data-acc-corner="tr"] #acc-widget-button {
+  top: 20px !important;
+  right: 20px !important;
+  bottom: auto !important;
+  left: auto !important;
+}
+
+:root[data-acc-corner="bl"] #acc-widget-panel {
+  bottom: 90px !important;
+  left: 20px !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+:root[data-acc-corner="br"] #acc-widget-panel {
+  bottom: 90px !important;
+  right: 20px !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+:root[data-acc-corner="tl"] #acc-widget-panel {
+  top: 90px !important;
+  left: 20px !important;
+  bottom: auto !important;
+  right: auto !important;
+}
+
+:root[data-acc-corner="tr"] #acc-widget-panel {
+  top: 90px !important;
+  right: 20px !important;
+  bottom: auto !important;
+  left: auto !important;
+}
+
+:root[data-acc-widget-hidden="true"] #acc-widget-button,
+:root[data-acc-widget-hidden="true"] #acc-widget-panel {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 #acc-widget-button {
   position: fixed !important;
   bottom: 20px !important;
@@ -217,6 +281,23 @@
 
 .acc-control:last-child {
   margin-bottom: 0 !important;
+}
+
+/* Options paired directly under a toggle (cursor size, mask band) */
+.acc-control.acc-paired-setting {
+  margin-top: -4px !important;
+  margin-bottom: 14px !important;
+  padding-left: 12px !important;
+  margin-left: 2px !important;
+  border-left: 3px solid var(--acc-border-color) !important;
+}
+
+.acc-field-hint {
+  display: block !important;
+  font-size: 11px !important;
+  color: var(--acc-text-muted) !important;
+  margin-top: 6px !important;
+  font-weight: 500 !important;
 }
 
 .acc-control > label:first-child {
@@ -443,6 +524,50 @@
 .acc-btn-reset:hover {
   background: white !important;
   border-color: var(--acc-primary) !important;
+}
+
+.acc-diff-summary {
+  font-size: 12px !important;
+  color: var(--acc-text-muted) !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.4 !important;
+}
+
+.acc-btn-small {
+  margin-top: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--acc-border-color) !important;
+  background: var(--acc-bg-light) !important;
+  color: var(--acc-primary) !important;
+  cursor: pointer !important;
+  width: 100% !important;
+}
+
+.acc-btn-small:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+.acc-btn-small.acc-btn-danger:not(:disabled) {
+  border-color: #c62828 !important;
+  color: #b71c1c !important;
+}
+
+.acc-text-input {
+  width: 100% !important;
+  padding: 8px !important;
+  border: 1px solid var(--acc-border-color) !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+}
+
+.acc-row-diff {
+  border-left: 3px solid var(--acc-primary) !important;
+  padding-left: 8px !important;
+  margin-left: -4px !important;
 }
 
 @media (max-width: 480px) {

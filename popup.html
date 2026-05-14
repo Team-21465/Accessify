@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accessibility Enhancer</title>
   <link rel="stylesheet" href="popup.css">
+  <script src="settings-model.js"></script>
+  <script src="preset-helpers.js"></script>
 </head>
 <body>
   <div class="container">
@@ -93,6 +95,22 @@
             <span class="slider round"></span>
           </label>
         </div>
+        <div class="control-item popup-paired">
+          <label for="popupCursorSize">Cursor size</label>
+          <select id="popupCursorSize">
+            <option value="sm">Small</option>
+            <option value="md">Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Prominent focus ring</span>
+            <input type="checkbox" id="popupProminentFocus">
+            <span class="slider round"></span>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -122,6 +140,14 @@
             <input type="checkbox" id="readingMask">
             <span class="slider round"></span>
           </label>
+        </div>
+        <div class="control-item popup-paired">
+          <label for="popupMaskBand">Mask band width</label>
+          <select id="popupMaskBand">
+            <option value="sm">Narrow</option>
+            <option value="md">Medium</option>
+            <option value="lg">Wide</option>
+          </select>
         </div>
 
         <div class="control-item toggle-item">
@@ -201,6 +227,29 @@
         <option value="tritanopia">Tritanopia (Blue-blind)</option>
         <option value="achromatopsia">Achromatopsia (Complete)</option>
       </select>
+    </div>
+
+    <div class="category">
+      <h2>Widget</h2>
+      <div class="grid">
+        <div class="control-item">
+          <label for="popupWidgetCorner">Floating button corner</label>
+          <select id="popupWidgetCorner">
+            <option value="bl">Bottom left</option>
+            <option value="br">Bottom right</option>
+            <option value="tl">Top left</option>
+            <option value="tr">Top right</option>
+          </select>
+        </div>
+        <div class="control-item toggle-item">
+          <label class="switch-label">
+            <span>Hide floating button</span>
+            <input type="checkbox" id="popupWidgetHidden">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top:8px;font-size:12px;">Tip: <strong>Alt+Z</strong> (Windows/Linux) or <strong>Option+Z</strong> (Mac) toggles the floating button if the shortcut is set. Configure it under <code>chrome://extensions/shortcuts</code> if it did not bind automatically.</p>
     </div>
 
     <div class="footer">

@@ -1,4 +1,4 @@
-<!-- Accessibility Widget Template - Matches popup.html structure -->
+<!-- Accessibility Widget Template -->
 <div id="acc-widget-button" role="button" aria-label="Accessibility Menu" tabindex="0">
   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
     <circle cx="12" cy="7.5" r="1.5"></circle>
@@ -17,6 +17,40 @@
   </div>
   
   <div class="acc-panel-content">
+    <div class="acc-category acc-scope-category">
+      <h3>Site &amp; layout</h3>
+      <div class="acc-control">
+        <label for="acc-scope-select">Apply settings to</label>
+        <select id="acc-scope-select" aria-describedby="acc-diff-summary">
+          <option value="default">Default (all sites)</option>
+          <option value="host">This site</option>
+        </select>
+      </div>
+      <p class="acc-diff-summary" id="acc-diff-summary" aria-live="polite"></p>
+      <div class="acc-control">
+        <label for="acc-widget-corner">Widget corner</label>
+        <select id="acc-widget-corner">
+          <option value="bl">Bottom left</option>
+          <option value="br">Bottom right</option>
+          <option value="tl">Top left</option>
+          <option value="tr">Top right</option>
+        </select>
+      </div>
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Hide floating button</span>
+          <input type="checkbox" id="acc-widget-hidden">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
+      <div class="acc-control">
+        <label for="acc-new-group-patterns">New domain group (comma-separated patterns)</label>
+        <input type="text" id="acc-new-group-patterns" class="acc-text-input" placeholder="*.edu, news.example.com" />
+        <button type="button" id="acc-new-group-btn" class="acc-btn-small">Create &amp; select group</button>
+        <button type="button" id="acc-remove-group-btn" class="acc-btn-small acc-btn-danger" disabled aria-disabled="true">Remove current group</button>
+      </div>
+    </div>
+
     <!-- Vision Section -->
     <div class="acc-category">
       <h3>Vision</h3>
@@ -85,6 +119,14 @@
           <span class="acc-switch"></span>
         </label>
       </div>
+
+      <div class="acc-control acc-toggle">
+        <label>
+          <span>Prominent focus ring</span>
+          <input type="checkbox" id="acc-prominent-focus">
+          <span class="acc-switch"></span>
+        </label>
+      </div>
       
       <div class="acc-control acc-toggle">
         <label>
@@ -92,6 +134,15 @@
           <input type="checkbox" id="acc-big-cursor">
           <span class="acc-switch"></span>
         </label>
+      </div>
+      <div class="acc-control acc-paired-setting">
+        <label for="acc-cursor-size">Cursor size</label>
+        <select id="acc-cursor-size" aria-describedby="acc-big-cursor-hint">
+          <option value="sm">Small</option>
+          <option value="md">Medium</option>
+          <option value="lg">Large</option>
+        </select>
+        <span id="acc-big-cursor-hint" class="acc-field-hint">When Big Cursor is on</span>
       </div>
     </div>
     
@@ -121,6 +172,15 @@
           <input type="checkbox" id="acc-reading-mask-toggle">
           <span class="acc-switch"></span>
         </label>
+      </div>
+      <div class="acc-control acc-paired-setting">
+        <label for="acc-reading-mask-band">Mask band width</label>
+        <select id="acc-reading-mask-band" aria-describedby="acc-reading-mask-hint">
+          <option value="sm">Narrow</option>
+          <option value="md">Medium</option>
+          <option value="lg">Wide</option>
+        </select>
+        <span id="acc-reading-mask-hint" class="acc-field-hint">When Reading Mask is on</span>
       </div>
       
       <div class="acc-control acc-toggle">

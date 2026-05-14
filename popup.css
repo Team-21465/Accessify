@@ -88,6 +88,13 @@ h1 {
   gap: 6px;
 }
 
+.control-item.popup-paired {
+  margin-top: -6px;
+  padding-left: 10px;
+  margin-left: 2px;
+  border-left: 3px solid var(--acc-border-color);
+}
+
 .control-item label {
   font-size: 13px;
   font-weight: 600;
